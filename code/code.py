@@ -23,7 +23,6 @@ from openai import OpenAI
 import torch
 from torch.utils.data import Dataset
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -32,7 +31,7 @@ pd.set_option("display.expand_frame_repr", False)
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Project Directory
-filepath = "C:/Users/Robert/OneDrive/Desktop/Bobby/GitHub/Etymology/"
+filepath = "C:/Users/Robert/OneDrive/Desktop/Bobby/GitHub/Canadian-Place-Name-Etymology/"
 
 
 #%% 2. Gather Data

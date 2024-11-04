@@ -34,7 +34,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 filepath = "C:/Users/Robert/OneDrive/Desktop/Bobby/GitHub/Canadian-Place-Name-Etymology/"
 
 
-#%% 2. Gather Data
+#%% 2. Gathering Data
 # Define Function for Gathering Place Name Data From Canadian Geographical Names Database
 def gather_data_cgnd():
     df_places = pd.read_csv(filepath + "data/place_names.csv", encoding='ISO-8859-1')
@@ -444,6 +444,8 @@ df_places3.to_csv(filepath + "data/df_places3.csv")
 
 
 #%% 6. Plotting
+df_places3 = pd.read_csv(filepath + "data/df_places3.csv")
+
 # Define Function for Plotting Place Name Etymologies on Map
 def plot_etymologies(data):  
     # Center Map
@@ -524,6 +526,7 @@ def plot_etymologies(data):
     m.get_root().html.add_child(folium.Element(legend_html))
     
     # Save the Map
+    m.save(filepath + "output/etymology_map.png")
     m.save(filepath + "output/etymology_map.html")
     
     # Launch the Application

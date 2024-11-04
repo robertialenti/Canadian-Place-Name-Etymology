@@ -25,4 +25,4 @@ Finally, I plot the place names on an interacive map using Folium. This allows u
 ## Results
 Here is the resulting plot.
 
-<img src="https://github.com/robertialenti/Commuting-in-Montreal/raw/main/output/etymology_amp.png">
+<img src="https://github.com/robertialenti/Commuting-in-Montreal/raw/main/output/etymology_map.png">

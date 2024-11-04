@@ -8,6 +8,8 @@ import pandas as pd
 import folium
 import os
 import re
+import io
+from PIL import Image
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 from fuzzywuzzy import fuzz, process
@@ -525,9 +527,7 @@ def plot_etymologies(data):
     # Add Legend to Map
     m.get_root().html.add_child(folium.Element(legend_html))
     
-    # Save the Map
-    import io
-    from PIL import Image
+    # Save the Map as HTML and PNG File
     img_data = m._to_png(5)
     img = Image.open(io.BytesIO(img_data))
     img.save(filepath + "output/etymology_map.png")

@@ -14,6 +14,7 @@ I begin by importing the libraries I need for ___.
 ### 2. Gathering Data
 
 ### 3. Extract Etymologies from Descriptions
+Using OpenAI's API, I use a large language model to read each place name's description and classify it as either: Indigenous, English, Scottish, Welsh, Irish, French, Other European, Other, or Unknown. In the event that ____.
 
 ### 4. Merging Etymologies with Place Names
 
@@ -23,6 +24,6 @@ I begin by importing the libraries I need for ___.
 Finally, I plot the place names on an interacive map using Folium. This allows users to explore the results.
 
 ## Results
-Here is the resulting plot.
+Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are disproportionately indigenous.
 
 <img src="https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.png">

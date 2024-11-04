@@ -526,7 +526,11 @@ def plot_etymologies(data):
     m.get_root().html.add_child(folium.Element(legend_html))
     
     # Save the Map
-    m.save(filepath + "output/etymology_map.png")
+    import io
+    from PIL import Image
+    img_data = m._to_png(5)
+    img = Image.open(io.BytesIO(img_data))
+    img.save(filepath + "output/etymology_map.png")
     m.save(filepath + "output/etymology_map.html")
     
     # Launch the Application

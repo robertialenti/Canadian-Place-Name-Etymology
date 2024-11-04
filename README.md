@@ -20,10 +20,14 @@ Using OpenAI's API, I use a large language model to read each place name's descr
 
 ### 5. Predicting Remaining Etymologies
 
+I predict the etymology of the remaining place names using a pre-trained large language model from Hugging Face. Namely, I _____, which I fine-tune using the set of more than 2,000 place names for which I already have etymological informaiton. I validate ___, ensuring that the loss derived from generating predictions on a subset of the data is below ____.
+
+I manually validate that ____.
+
 ### 6. Plotting
 Finally, I plot the place names on an interacive map using Folium. This allows users to explore the results.
 
 ## Results
-Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are disproportionately indigenous.
+Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are disproportionately indigenous, while the prominence of place names with French origin increases dramatically when crossing from Ontario into Quebec.
 
 <img src="https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.png">

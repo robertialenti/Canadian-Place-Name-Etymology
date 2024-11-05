@@ -1,5 +1,5 @@
 # Mapping Etymology of Canadian Place Names
-The goal of this project is to plot the etymology of Canadian place names. I identify the etymology of Canadian places using a combination of official government sources, past research, and large language models.
+This project visualizes the etymology of Canadian place names. I identify the origin of Canadian cities, towns, and other inhabited places using a combination of official government sources, past research, and large language models.
 
 ## Data
 I downloaded the entirety of the Canadian Geographical Names Database, which includes the name, location, and __ for all places in Canada. I selected only populated places - removing forests, mountains, and other natural features - and retained only those with a scale relevance of at least ___.
@@ -12,12 +12,14 @@ The code is divided into 6 sections. To run the code without modification, creat
 I begin by importing the libraries I need for manipulating data, parsing HTML, using large language models for classification, and mapping results.
 
 ### 2. Gathering Data
-I gather place name data from the Canadian Geographical Names Database (CGND). This publicly available database includes the names, location, ___, and ___ of more than ___ Canadian place names, including cities, towns, mountains, lakes, railroad stations, etc. I retain only populated places with a relevance of at leasts 250,000 - meaning that _____.
+I gather place name data from the Canadian Geographical Names Database (CGND). This publicly available database includes the names, location, ___, and ___ of more than ___ Canadian place names, including cities, towns, mountains, lakes, railroad stations, etc. I retain only populated places with a relevance of at leasts 250,000 - meaning that _____. For places with Indigenous names, the database provides information on spelling and pronunciation, making it easy to immediatetly identify places with Indigenous etymologies.
 
-I gather etymologyical information for approximately 2,000 populated places from ___ (Armstrong, 1930), which provides an important ___.
+Next, I gather etymologyical information for approximately 2,000 populated places from The Origin and Meaning of Place Names in Canada (Armstrong, 1930), which remains a referential text on the topic. For each place name discussed - of which there are around - the text offers some historical, geographical, and etymological information. Here is the excerpt for Montreal, QC:
+
+
 
 ### 3. Extract Etymologies from Descriptions
-Using OpenAI's API, I use a large language model to read each place name's description and classify it as either: Indigenous, English, Scottish, Welsh, Irish, French, Other European, Other, or Unknown. In the event that ____.
+Using OpenAI's API, I use a large language model to read each place name's description and subsequently classify its origin as either: Indigenous, English, Scottish, Welsh, Irish, French, Other European, Other, or Unknown. 
 
 ### 4. Merging Etymologies with Place Names
 

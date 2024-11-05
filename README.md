@@ -1,4 +1,4 @@
-# Canadian Place Name Etymology
+# Mapping Etymology of Canadian Place Names
 The goal of this project is to plot the etymology of Canadian place names. I identify the etymology of Canadian places using a combination of official government sources, past research, and large language models.
 
 ## Data

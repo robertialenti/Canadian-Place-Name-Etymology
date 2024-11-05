@@ -6,7 +6,7 @@ I downloaded the entirety of the Canadian Geographical Names Database, which inc
 
 ## Code
 
-The code is divided into 6 sections.
+The code is divided into 6 sections. To run the code without modification, create a project directory with `code`, `data`, and `output` folders. Place ____.
 
 ### 1. Preliminaries
 I begin by importing the libraries I need for manipulating data, parsing HTML, using large language models for classification, and mapping results.

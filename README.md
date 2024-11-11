@@ -32,9 +32,13 @@ I manually validate that ____.
 Finally, I plot the place names on an interacive map using Folium. This allows users to explore the results in greater detail.
 
 ## Results
-Here is a tabulation of place name origin, by province.
+Here is a tabulation of place name origin, by province or territory.
 
-
+| Province | Indigenous | English | Scottish | Welsh | Irish | French | Other European | Other | Total |
+| -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ----- |
+| British Columbia | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| Alberta | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| Saskatchewan | -- | -- | -- | -- | -- | -- | -- | -- | -- |
 
 Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are more likely to have indigenous origins. Central and Western Canada have place names that are mostly of British, Irish, or other European origin. The prominence of place names with French origin increases dramatically when crossing from Ontario into Quebec, though names of British origin can be found in the province's Eastern Townships region.
 

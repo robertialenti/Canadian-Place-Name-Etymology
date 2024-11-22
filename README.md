@@ -34,22 +34,22 @@ Finally, I plot the place names on an interacive map using Folium. This allows u
 ## Results
 Here is a tabulation of place name origin, by province or territory.
 
-| Province | Indigenous | English | Scottish | Welsh | Irish | French | Other European | Other | Total |
-| -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ----- |
+| Province | Indigenous | English | Scottish | Welsh | Irish | French | Other European | Other | Unknown | Total |
+| -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ------- | ----- |
 | British Columbia | 436 | 962 | 128 | 0 | 1 | 52 | 18 | 0 | 1 | 1598 |
 | Alberta | 314 | 865 | 150 | 0 | 0 | 71 | 30 | 0 | 0 | 1430 |
-| Saskatchewan | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Manitoba | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Ontario | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Quebec | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Newfoundland and Labrador | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| New Brunswick | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Nova Scotia | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Prince Edward Island | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Yukon | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Northwest Territories | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Nunavut | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Total | 3833 | 11266 | 1385 | 9 | 52 | 2445 | 241 | 2 | 6 | 19229 |
+| Saskatchewan | 369 | 997 | 184 | 0 | 5 | 101 | 32 | 0 | 0 | 1688 |
+| Manitoba | 336 | 613 | 126 | 0 | 1 | 81 | 17 | 0 | 0 | 1063 |
+| Ontario | 799 | 3371 | 450 | 9 | 37 | 200 | 81 | 2 | 4 | 4953 |
+| Quebec | 701 | 669 | 105 | 0 | 2 | 1446 | 23 | 0 | 1 | 2947 |
+| Newfoundland and Labrador | 149 | 658 | 30 | 0 | 1 | 91 | 3 | 0 | 0 | 932 |
+| New Brunswick | 343 | 1156 | 67 | 0 | 2 | 254 | 8 | 0 | 0 | 1830 |
+| Nova Scotia | 332 | 1442 | 93 | 0 | 0 | 116 | 14 | 0 | 0 | 1997
+| Prince Edward Island | 69 | 402 | 35 | 0 | 3 | 25 | 4 | 0 | 0 | 538
+| Yukon | 36 | 73 | 10 | 0 | 0 | 5 | 1 | 0 | 0 | 125 |
+| Northwest Territories | 29 | 36 | 3 | 0 | 0 | 2 | 0 | 0 | 0 | 70 |
+| Nunavut | 31 | 22 | 4 | 0 | 0 | 1 | 0 | 0 | 0 | 58 |
+| Total | 3833 | 11266 | 1385 | 9 | 52 | 2445 | 231 | 2 | 6 | 19229 |
 
 Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are more likely to have indigenous origins. Central and Western Canada have place names that are mostly of British, Irish, or other European origin. The prominence of place names with French origin increases dramatically when crossing from Ontario into Quebec, though names of British origin can be found in the province's Eastern Townships region.
 

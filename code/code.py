@@ -548,6 +548,7 @@ def plot_etymologies(data):
     img_data = m._to_png(5)
     img = Image.open(io.BytesIO(img_data))
     img.save(filepath + "output/etymology_map.png")
+    m.save(filepath + "output/etymology_map.html")
     
     # Launch the Application
     view = QWebEngineView()

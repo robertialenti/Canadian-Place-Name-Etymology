@@ -26,6 +26,7 @@ import torch
 from torch.utils.data import Dataset
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
 
 # Options
@@ -100,18 +101,14 @@ def gather_data_armstrong():
     for p in soup.find_all('p'):
         span = p.find('span', class_='bold')
         
-        if span:  # If a <span class="bold"> is found
-            # If we already have a place name and description to store
+        if span:
             if current_description:
-                # Store the last place name and its description
                 place_names.append(last_place_name)
                 descriptions.append(current_description.strip())
-                current_description = ""  # Reset current description
+                current_description = ""
     
-            last_place_name = span.text.strip()  # Get the place name from the span
-    
-        # Continue building the current description
-        current_description += p.text.strip() + " "  # Add the paragraph text
+            last_place_name = span.text.strip()
+        current_description += p.text.strip() + " "
     
     # Check if there's a remaining description to store after the loop
     if current_description:
@@ -293,7 +290,7 @@ df_places2.to_csv(filepath + "data/df_places2.csv")
 #%% 5. Predicting Place Name Etymologies
 df_places2 = pd.read_csv(filepath + "data/df_places2.csv")
 
-# Create Custom Dataset Class
+# Define the Custom Dataset Class
 class TextDataset(Dataset):
     def __init__(self, input_ids, attention_mask, labels=None):
         self.input_ids = input_ids
@@ -313,8 +310,16 @@ class TextDataset(Dataset):
         return item
 
 
-# Define Function for Fine-Tuning NLP Model
-def fine_tune(df_places2):
+# Define a custom compute_metrics function for accuracy
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = logits.argmax(axis=1)
+    accuracy = accuracy_score(labels, predictions)
+    return {"accuracy": accuracy}
+
+
+# Define Function for Fine-Tuning NLP Model with Accuracy
+def fine_tune_with_accuracy(df_places2):
     # Create Training and Testing Sets
     x_train, x_test, y_train, y_test = train_test_split(
         df_places2["place_name"],
@@ -329,8 +334,7 @@ def fine_tune(df_places2):
     label_encoder.fit(all_classes)  # Fit on all classes you expect to see
     
     # Encode the labels
-    label_encoder = LabelEncoder()
-    y_train_encoded = label_encoder.fit_transform(y_train)
+    y_train_encoded = label_encoder.transform(y_train)
     y_test_encoded = label_encoder.transform(y_test)
     
     # Select Pre-Trained Model
@@ -361,23 +365,24 @@ def fine_tune(df_places2):
     # Specify Training Parameters
     training_args = TrainingArguments(
         output_dir='./results',          
-        eval_strategy="epoch",     
-        per_device_train_batch_size=4,   # Small batch size
+        evaluation_strategy="epoch",     
+        per_device_train_batch_size=4,   
         per_device_eval_batch_size=8,    
-        gradient_accumulation_steps=2,   # Accumulate gradients over 2 steps
+        gradient_accumulation_steps=2,   
         num_train_epochs=3,              
         weight_decay=0.01,               
         logging_dir='./logs',            
-        logging_steps=10,      
-        use_cpu = True          
+        logging_steps=10,                
+        use_cpu=True
     )
     
-    # Create Trainer
+    # Create Trainer with Custom Metrics
     trainer = Trainer(
         model=model,                         
         args=training_args,                  
-        train_dataset=train_dataset,        
+        train_dataset=train_dataset,         
         eval_dataset=test_dataset,           
+        compute_metrics=compute_metrics
     )
     
     # Fine-Tune Model
@@ -387,15 +392,12 @@ def fine_tune(df_places2):
     evaluation_results = trainer.evaluate()
     print(evaluation_results)
     
-    #predictions = trainer.predict(test_dataset)
-    #predicted_labels = torch.argmax(torch.tensor(predictions.predictions), dim=-1)
-    #predicted_labels_decoded = label_encoder.inverse_transform(predicted_labels.cpu().numpy())
-    
     # Return Model
     return trainer, label_encoder
 
 
-trainer, label_encoder = fine_tune(df_places2)
+# Call the function to fine-tune and display accuracy
+trainer, label_encoder = fine_tune_with_accuracy(df_places2)
 
 # Select Missing Place Names to Predict
 df_places_missing = df_places.merge(df_places2[['place_name', 'province', 'lat', 'long', 'source']], 
@@ -546,7 +548,6 @@ def plot_etymologies(data):
     img_data = m._to_png(5)
     img = Image.open(io.BytesIO(img_data))
     img.save(filepath + "output/etymology_map.png")
-    m.save(filepath + "output/etymology_map.html")
     
     # Launch the Application
     view = QWebEngineView()

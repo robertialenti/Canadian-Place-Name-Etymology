@@ -155,7 +155,7 @@ def gather_data_armstrong():
 df_etymology = gather_data_armstrong()
 
 
-#%% 3. Extract Etymology from Descriptions in Armstrong (1930)
+#%% 3. Extract Etymology from Descriptions
 # Define Function for Summarizing Etymological Descriptions for Place Names in Armstrong (1930)
 def summarize_descriptions(place_name, description):
     # Define Valid Etymologies
@@ -440,13 +440,28 @@ def predict(df_places_missing):
 
 df_places_missing = predict(df_places_missing)
 
-df_places3 = pd.concat([df_places2, df_places_missing[["place_name", "predicted_etymology", "source", "lat", "long"]]]).reset_index()
+df_places3 = pd.concat([df_places2, df_places_missing[["place_name", "province", "predicted_etymology", "source", "lat", "long"]]]).reset_index()
 df_places3.loc[df_places3['source'] == 'Predicted', 'etymology'] = df_places3['predicted_etymology']
 df_places3.to_csv(filepath + "data/df_places3.csv")
 
 
 #%% 6. Plotting
 df_places3 = pd.read_csv(filepath + "data/df_places3.csv")
+
+# Tabulation
+etymology_counts = df_places3.groupby(['province', 'etymology']).size().unstack(fill_value=0)
+etymology_counts['Total'] = etymology_counts.sum(axis=1)
+
+# Sort columns in the specified order, adding any missing ones with 0 values
+desired_order = ['Indigenous', 'English', 'Scottish', 'Welsh', 'Irish', 'French', 'Other European', 'Other', 'Unknown', 'Total']
+for col in desired_order:
+    if col not in etymology_counts.columns:
+        etymology_counts[col] = 0
+
+etymology_counts = etymology_counts[desired_order]
+
+# Add a row for totals across all provinces
+etymology_counts.loc['Total'] = etymology_counts.sum()
 
 # Define Function for Plotting Place Name Etymologies on Map
 def plot_etymologies(data):  

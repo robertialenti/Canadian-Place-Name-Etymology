@@ -56,3 +56,5 @@ Here is a static version of the map. As expected, I find that place names locate
 The interactive map, saved as a HTML file is also made available in the `output` folder.
 
 <iframe src="https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.html" height="500" width="500"></iframe>
+
+You can explore this map [as its own web page here](https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.html)

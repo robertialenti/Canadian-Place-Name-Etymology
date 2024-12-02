@@ -19,6 +19,8 @@ from unidecode import unidecode
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
+from folium import MacroElement
+from jinja2 import Template
 
 # Large Language Modelling
 from openai import OpenAI
@@ -492,7 +494,7 @@ def plot_etymologies(data):
             location=[row['lat'], row['long']],
             popup=folium.Popup(popup_text, max_width = 300),
             fill = True,
-            radius = 1,
+            radius = 2,
             opacity = 0.7,
             fill_opacity = 0.7,
             color = marker_color,
@@ -543,6 +545,32 @@ def plot_etymologies(data):
     
     # Add Legend to Map
     m.get_root().html.add_child(folium.Element(legend_html))
+    
+    # Add Custom JavaScript for Dynamic Scaling
+    custom_js = """
+    function resizeMarkers() {
+        var zoomLevel = map.getZoom();
+        var scale = Math.pow(2, zoomLevel - 4);  // Adjust scale factor as needed
+        map.eachLayer(function (layer) {
+            if (layer instanceof L.CircleMarker) {
+                layer.setRadius(scale + 3);  // Ensure a minimum size (3)
+            }
+        });
+    }
+
+    map.on('zoomend', resizeMarkers);
+    resizeMarkers();  // Initialize with correct size
+    """
+    script = MacroElement()
+    script._template = Template(f"""
+    <script>
+    var map = {{this._parent.get_name()}};
+    {custom_js}
+    </script>
+    """)
+
+    # Add the JavaScript to the map
+    m.get_root().add_child(script)
     
     # Save the Map as HTML and PNG File
     img_data = m._to_png(5)

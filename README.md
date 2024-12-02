@@ -24,7 +24,7 @@ Using OpenAI's API, I use the GPT-4 large language model to read each place name
 I merge the now-classified place names from Armstrong (1930) to the CGND using a combination of exact and fuzzy merging on place name and province. I am able to match all of the place names discussed in Armstrong (1930). I assume that the resulting merged dataset, with approximately 1,400 place names, has correctly classified each place name's etymology.
 
 ### 5. Predicting Remaining Etymologies
-I predict the etymology of the remaining place names using a pre-trained large language model - in particular, a distilled version of the RoBERTa base model - hosted on Hugging Face. I fine-tune the model using the set of 1,400 place names for which I already have etymological information. The model records accuracy of 78.64% when making out-of-sample predictions.
+I predict the etymology of the remaining place names using a pre-trained large language model - in particular, a distilled version of the RoBERTa base model - hosted on Hugging Face. I fine-tune the model using the set of 1,400 place names for which I already have etymological information. The model records accuracy of 78.64% when making out-of-sample predictions. Thus, I accept that some of the place names will have their etymologies incorrectly classified, as one can confirm using manual validation.
 
 ### 6. Plotting
 Finally, I plot the place names on an interacive map using Folium. This allows users to explore the results in greater detail. Each place name is colored by its etymology, when hovering over the place name, the source of the classification is provided.
@@ -53,8 +53,5 @@ Here is a static version of the map. As expected, I find that place names locate
 
 <img src="https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.png">
 
-The interactive map, saved as a HTML file is also made available in the `output` folder.
+You can also view an [interactive map](https://robertialenti.github.io/Canadian-Place-Name-Etymology/output/etymology_map.html).
 
-<iframe src="https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.html" height="500" width="500"></iframe>
-
-You can explore this map [as its own web page here](https://github.com/robertialenti/Canadian-Place-Name-Etymology/raw/main/output/etymology_map.html)

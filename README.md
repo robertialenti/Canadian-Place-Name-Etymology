@@ -34,8 +34,8 @@ Here is a tabulation of place name origin, by province or territory.
 
 | Province | Indigenous | English | Scottish | Welsh | Irish | French | Other European | Other | Unknown | Total |
 | -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ------- | ----- |
-| British Columbia | 436 | 962 | 128 | 0 | 1 | 52 | 18 | 0 | 1 | 1598 |
-| Alberta | 314 | 865 | 150 | 0 | 0 | 71 | 30 | 0 | 0 | 1430 |
+| British Columbia | 405 | 939 | 116 | 0 | 3 | 127 | 7 | 0 | 1 | 1598 |
+| Alberta | 285 | 837 | 145 | 0 | 4 | 144 | 15 | 0 | 0 | 1430 |
 | Saskatchewan | 369 | 997 | 184 | 0 | 5 | 101 | 32 | 0 | 0 | 1688 |
 | Manitoba | 336 | 613 | 126 | 0 | 1 | 81 | 17 | 0 | 0 | 1063 |
 | Ontario | 799 | 3371 | 450 | 9 | 37 | 200 | 81 | 2 | 4 | 4953 |

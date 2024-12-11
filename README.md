@@ -36,18 +36,18 @@ Here is a tabulation of place name origin, by province or territory.
 | -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ------- | ----- |
 | British Columbia | 405 | 939 | 116 | 0 | 3 | 127 | 7 | 0 | 1 | 1598 |
 | Alberta | 285 | 837 | 145 | 0 | 4 | 144 | 15 | 0 | 0 | 1430 |
-| Saskatchewan | 369 | 997 | 184 | 0 | 5 | 101 | 32 | 0 | 0 | 1688 |
-| Manitoba | 336 | 613 | 126 | 0 | 1 | 81 | 17 | 0 | 0 | 1063 |
-| Ontario | 799 | 3371 | 450 | 9 | 37 | 200 | 81 | 2 | 4 | 4953 |
-| Quebec | 701 | 669 | 105 | 0 | 2 | 1446 | 23 | 0 | 1 | 2947 |
-| Newfoundland and Labrador | 149 | 658 | 30 | 0 | 1 | 91 | 3 | 0 | 0 | 932 |
-| New Brunswick | 343 | 1156 | 67 | 0 | 2 | 254 | 8 | 0 | 0 | 1830 |
-| Nova Scotia | 332 | 1442 | 93 | 0 | 0 | 116 | 14 | 0 | 0 | 1997
-| Prince Edward Island | 69 | 402 | 35 | 0 | 3 | 25 | 4 | 0 | 0 | 538
-| Yukon | 36 | 73 | 10 | 0 | 0 | 5 | 1 | 0 | 0 | 125 |
+| Saskatchewan | 315 | 972 | 194 | 0 | 7 | 179 | 21 | 0 | 0 | 1688 |
+| Manitoba | 205 | 611 | 105 | 0 | 2 | 132 | 8 | 0 | 0 | 1063 |
+| Ontario | 695 | 3291 | 481 | 9 | 40 | 381 | 50 | 2 | 4 | 4953 |
+| Quebec | 489 | 646 | 93 | 0 | 5 | 1709 | 4 | 0 | 1 | 2947 |
+| Newfoundland and Labrador | 118 | 665 | 28 | 0 | 1 | 119 | 1 | 0 | 0 | 932 |
+| New Brunswick | 272 | 1145 | 74 | 0 | 3 | 330 | 6 | 0 | 0 | 1830 |
+| Nova Scotia | 286 | 1439 | 75 | 0 | 2 | 192 | 3 | 0 | 0 | 1997 |
+| Prince Edward Island | 55 | 389 | 35 | 0 | 4 | 54 | 1 | 0 | 0 | 538 |
+| Yukon | 37 | 67 | 8 | 0 | 0 | 12 | 1 | 0 | 0 | 125 |
 | Northwest Territories | 29 | 36 | 3 | 0 | 0 | 2 | 0 | 0 | 0 | 70 |
-| Nunavut | 31 | 22 | 4 | 0 | 0 | 1 | 0 | 0 | 0 | 58 |
-| Total | 3833 | 11266 | 1385 | 9 | 52 | 2445 | 231 | 2 | 6 | 19229 |
+| Nunavut | 29 | 23 | 2 | 0 | 0 | 4 | 0 | 0 | 0 | 58 |
+| Total | 3219 | 11061 | 1358 | 9 | 71 | 3386 | 117 | 2 | 6 | 19229 |
 
 Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are more likely to have indigenous origins. Central and Western Canada have place names that are mostly of British, Irish, or other European origin. The prominence of place names with French origin increases dramatically when crossing from Ontario into Quebec, though names of British origin can be found in the province's Eastern Townships region.
 

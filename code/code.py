@@ -5,10 +5,12 @@ This scripts geolocates Canadian city names, identifies the place name's etymolo
 #%% 1. Preliminaries
 # General
 import pandas as pd
+import numpy as np
 import folium
 import os
 import re
 import io
+import matplotlib.pyplot as plt
 from PIL import Image
 from bs4 import BeautifulSoup
 from tqdm import tqdm
@@ -28,7 +30,7 @@ import torch
 from torch.utils.data import Dataset
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import f1_score, accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.preprocessing import LabelEncoder
 
 # Options
@@ -312,16 +314,25 @@ class TextDataset(Dataset):
         return item
 
 
-# Define a custom compute_metrics function for accuracy
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     predictions = logits.argmax(axis=1)
+    f1 = f1_score(labels, predictions, average="weighted")  # Weighted F1 for class imbalance
     accuracy = accuracy_score(labels, predictions)
-    return {"accuracy": accuracy}
+    return {"accuracy": accuracy, "f1": f1}
+
+
+# Define function to plot confusion matrix
+def plot_confusion_matrix(y_true, y_pred, class_names):
+    cm = confusion_matrix(y_true, y_pred, labels=range(len(class_names)))
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+    disp.plot(cmap=plt.cm.Blues, xticks_rotation="vertical")
+    plt.title("Confusion Matrix")
+    plt.show()
 
 
 # Define Function for Fine-Tuning NLP Model with Accuracy
-def fine_tune_with_accuracy(df_places2):
+def fine_tune_with_metrics(df_places2):
     # Create Training and Testing Sets
     x_train, x_test, y_train, y_test = train_test_split(
         df_places2["place_name"],
@@ -384,22 +395,28 @@ def fine_tune_with_accuracy(df_places2):
         args=training_args,                  
         train_dataset=train_dataset,         
         eval_dataset=test_dataset,           
-        compute_metrics=compute_metrics
+        compute_metrics=compute_metrics      
     )
     
     # Fine-Tune Model
     trainer.train()
     
-    # Examine Evaluation Results
+    # Evaluate Model and Get Predictions
     evaluation_results = trainer.evaluate()
     print(evaluation_results)
+
+    predictions = trainer.predict(test_dataset)
+    y_pred = np.argmax(predictions.predictions, axis=1)
+
+    # Print the confusion matrix
+    plot_confusion_matrix(y_test_encoded, y_pred, label_encoder.classes_)
     
-    # Return Model
+    # Return Trainer and Label Encoder
     return trainer, label_encoder
 
 
-# Call the function to fine-tune and display accuracy
-trainer, label_encoder = fine_tune_with_accuracy(df_places2)
+# Call the function to fine-tune and display metrics
+trainer, label_encoder = fine_tune_with_metrics(df_places2)
 
 # Select Missing Place Names to Predict
 df_places_missing = df_places.merge(df_places2[['place_name', 'province', 'lat', 'long', 'source']], 

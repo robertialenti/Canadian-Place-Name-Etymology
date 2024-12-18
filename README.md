@@ -24,7 +24,7 @@ Using OpenAI's API, I use the GPT-4 large language model to read each place name
 I merge the now-classified place names from Armstrong (1930) to the CGND using a combination of exact and fuzzy merging on place name and province. I am able to match all of the place names discussed in Armstrong (1930). I assume that the resulting merged dataset, with approximately 1,400 place names, has correctly classified each place name's etymology.
 
 ### 5. Predicting Remaining Etymologies
-I predict the etymology of the remaining place names using a pre-trained large language model - in particular, a distilled version of the RoBERTa base model - hosted on Hugging Face. I fine-tune the model using the set of 1,400 place names for which I already have etymological information. The model's performance is still being evaluated, with tweaks being made. Thus, I accept that some of the place names will have their etymologies incorrectly classified, as one can confirm using manual validation.
+I predict the etymology of the remaining place names using a pre-trained large language model - in particular, a distilled version of the RoBERTa base model - hosted on Hugging Face. I fine-tune the model using the set of 1,400 place names for which I already have etymological information. The model's performance is evaluated using te F score, which balances precision and recall. This is done to ensure that the model's performance is not inflated by simply predicting the most common classes. The confusion matrix describes the relationship between true positives and false positive predictions in the testing set. Naturally, I accept that some of the place names will have their etymologies incorrectly classified, as one can confirm using manual validation.
 
 ### 6. Plotting
 Finally, I plot the place names on an interacive map using Folium. This allows users to explore the results in greater detail. Each place name is colored by its etymology, when hovering over the place name, the source of the classification is provided.
@@ -34,20 +34,20 @@ Here is a tabulation of place name origin, by province or territory.
 
 | Province | Indigenous | English | Scottish | Welsh | Irish | French | Other European | Other | Unknown | Total |
 | -------- | ---------- | ------- | -------- | ----- | ----- | ------ | -------------- | ----- | ------- | ----- |
-| British Columbia | 436 | 962 | 128 | 0 | 1 | 52 | 18 | 0 | 1 | 1598 |
-| Alberta | 314 | 865 | 150 | 0 | 0 | 71 | 30 | 0 | 0 | 1430 |
-| Saskatchewan | 369 | 997 | 184 | 0 | 5 | 101 | 32 | 0 | 0 | 1688 |
-| Manitoba | 336 | 613 | 126 | 0 | 1 | 81 | 17 | 0 | 0 | 1063 |
-| Ontario | 799 | 3371 | 450 | 9 | 37 | 200 | 81 | 2 | 4 | 4953 |
-| Quebec | 701 | 669 | 105 | 0 | 2 | 1446 | 23 | 0 | 1 | 2947 |
-| Newfoundland and Labrador | 149 | 658 | 30 | 0 | 1 | 91 | 3 | 0 | 0 | 932 |
-| New Brunswick | 343 | 1156 | 67 | 0 | 2 | 254 | 8 | 0 | 0 | 1830 |
-| Nova Scotia | 332 | 1442 | 93 | 0 | 0 | 116 | 14 | 0 | 0 | 1997
-| Prince Edward Island | 69 | 402 | 35 | 0 | 3 | 25 | 4 | 0 | 0 | 538
-| Yukon | 36 | 73 | 10 | 0 | 0 | 5 | 1 | 0 | 0 | 125 |
+| British Columbia | 405 | 939 | 116 | 0 | 3 | 127 | 7 | 0 | 1 | 1598 |
+| Alberta | 285 | 837 | 145 | 0 | 4 | 144 | 15 | 0 | 0 | 1430 |
+| Saskatchewan | 315 | 972 | 194 | 0 | 7 | 179 | 21 | 0 | 0 | 1688 |
+| Manitoba | 205 | 611 | 105 | 0 | 2 | 132 | 8 | 0 | 0 | 1063 |
+| Ontario | 695 | 3291 | 481 | 9 | 40 | 381 | 50 | 2 | 4 | 4953 |
+| Quebec | 489 | 646 | 93 | 0 | 5 | 1709 | 4 | 0 | 1 | 2947 |
+| Newfoundland and Labrador | 118 | 665 | 28 | 0 | 1 | 119 | 1 | 0 | 0 | 932 |
+| New Brunswick | 272 | 1145 | 74 | 0 | 3 | 330 | 6 | 0 | 0 | 1830 |
+| Nova Scotia | 286 | 1439 | 75 | 0 | 2 | 192 | 3 | 0 | 0 | 1997 |
+| Prince Edward Island | 55 | 389 | 35 | 0 | 4 | 54 | 1 | 0 | 0 | 538 |
+| Yukon | 37 | 67 | 8 | 0 | 0 | 12 | 1 | 0 | 0 | 125 |
 | Northwest Territories | 29 | 36 | 3 | 0 | 0 | 2 | 0 | 0 | 0 | 70 |
-| Nunavut | 31 | 22 | 4 | 0 | 0 | 1 | 0 | 0 | 0 | 58 |
-| Total | 3833 | 11266 | 1385 | 9 | 52 | 2445 | 231 | 2 | 6 | 19229 |
+| Nunavut | 29 | 23 | 2 | 0 | 0 | 4 | 0 | 0 | 0 | 58 |
+| Total | 3219 | 11061 | 1358 | 9 | 71 | 3386 | 117 | 2 | 6 | 19229 |
 
 Here is a static version of the map. As expected, I find that place names located in the country's Northern regions are more likely to have indigenous origins. Central and Western Canada have place names that are mostly of British, Irish, or other European origin. The prominence of place names with French origin increases dramatically when crossing from Ontario into Quebec, though names of British origin can be found in the province's Eastern Townships region.
 

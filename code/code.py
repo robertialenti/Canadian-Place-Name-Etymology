@@ -473,16 +473,46 @@ df_places3 = pd.read_csv(filepath + "data/df_places3.csv")
 etymology_counts = df_places3.groupby(['province', 'etymology']).size().unstack(fill_value=0)
 etymology_counts['Total'] = etymology_counts.sum(axis=1)
 
-# Sort columns in the specified order, adding any missing ones with 0 values
-desired_order = ['Indigenous', 'English', 'Scottish', 'Welsh', 'Irish', 'French', 'Other European', 'Other', 'Unknown', 'Total']
-for col in desired_order:
+# Specify Column Order
+desired_col_order = ['Indigenous', 
+                     'English', 
+                     'Scottish', 
+                     'Welsh', 
+                     'Irish', 
+                     'French', 
+                     'Other European', 
+                     'Other', 
+                     'Unknown', 
+                     'Total']
+for col in desired_col_order:
     if col not in etymology_counts.columns:
         etymology_counts[col] = 0
+etymology_counts = etymology_counts[desired_col_order]
 
-etymology_counts = etymology_counts[desired_order]
+# Specify Row Order
+desired_row_order = ['British Columbia', 
+                     'Alberta', 
+                     'Saskatchewan', 
+                     'Manitoba', 
+                     'Ontario', 
+                     'Quebec', 
+                     'Newfoundland and Labrador', 
+                     'New Brunswick', 
+                     'Nova Scotia', 
+                     'Prince Edward Island',
+                     'Yukon',
+                     'Northwest Territories',
+                     'Nunavut',
+                     'Total']
+for row in desired_row_order:
+    if row not in etymology_counts.index:
+        etymology_counts.loc[row] = 0
+etymology_counts = etymology_counts.reindex(desired_row_order)
 
-# Add a row for totals across all provinces
-etymology_counts.loc['Total'] = etymology_counts.sum()
+print(etymology_counts.sum())
+
+# Print Tabulation
+print(etymology_counts)
 
 # Define Function for Plotting Place Name Etymologies on Map
 def plot_etymologies(data):  

@@ -1,7 +1,3 @@
-""" 
-This scripts geolocates Canadian city names, identifies the place name's etymology using available research, with the help of large language models, and plots results.
-"""
-
 #%% 1. Preliminaries
 # General
 import pandas as pd
@@ -344,7 +340,7 @@ def fine_tune_with_metrics(df_places2):
     # Encode Etymologies
     all_classes = ['Indigenous', 'English', 'Scottish', 'Welsh', 'Irish', 'French', 'Other European', 'Other', 'Unknown']  # Use actual class names
     label_encoder = LabelEncoder()
-    label_encoder.fit(all_classes)  # Fit on all classes you expect to see
+    label_encoder.fit(all_classes) 
     
     # Encode the labels
     y_train_encoded = label_encoder.transform(y_train)
@@ -537,17 +533,16 @@ def plot_etymologies(data):
         'Other': 'black'
     }
         marker_color = etymology_colors.get(row['etymology'], 'gray')
-        folium.CircleMarker(
+        folium.Circle(
             location=[row['lat'], row['long']],
-            popup=folium.Popup(popup_text, max_width = 300),
-            fill = True,
-            radius = 2,
-            opacity = 0.7,
-            fill_opacity = 0.7,
-            color = marker_color,
-            fill_color = marker_color
+            popup=folium.Popup(popup_text, max_width=300),
+            fill=True,
+            radius=5,  
+            fill_opacity=0.7,
+            color=marker_color,
+            fill_color=marker_color
         ).add_to(m)
-    
+
     # Configure Legend
     legend_html = '''
     <div style="position: fixed; 
@@ -592,33 +587,7 @@ def plot_etymologies(data):
     
     # Add Legend to Map
     m.get_root().html.add_child(folium.Element(legend_html))
-    
-    # Add Custom JavaScript for Dynamic Scaling
-    custom_js = """
-    function resizeMarkers() {
-        var zoomLevel = map.getZoom();
-        var scale = Math.pow(2, zoomLevel - 4);  // Adjust scale factor as needed
-        map.eachLayer(function (layer) {
-            if (layer instanceof L.CircleMarker) {
-                layer.setRadius(scale + 3);  // Ensure a minimum size (3)
-            }
-        });
-    }
 
-    map.on('zoomend', resizeMarkers);
-    resizeMarkers();  // Initialize with correct size
-    """
-    script = MacroElement()
-    script._template = Template(f"""
-    <script>
-    var map = {{this._parent.get_name()}};
-    {custom_js}
-    </script>
-    """)
-
-    # Add the JavaScript to the map
-    m.get_root().add_child(script)
-    
     # Save the Map as HTML and PNG File
     img_data = m._to_png(5)
     img = Image.open(io.BytesIO(img_data))
@@ -633,3 +602,5 @@ def plot_etymologies(data):
 
 
 plot_etymologies(df_places3)
+
+# %%
